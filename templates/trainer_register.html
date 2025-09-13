@@ -1,0 +1,98 @@
+{% extends "header.html" %}
+
+{% block content %}
+<style>
+
+  .card {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+    color: #fff;
+    width: 100%;
+    max-width: 500px;
+  }
+  .form-control, .form-select {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: #fff;
+  }
+  .form-control::placeholder, .form-select option {
+    color: #eee;
+  }
+  .btn-success {
+    background: rgba(40, 167, 69, 0.8);
+    border: none;
+  }
+  .btn-success:hover {
+    background: rgba(40, 167, 69, 1);
+  }
+  .terms-box {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    padding: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 0.5rem;
+    height: 100px;
+    overflow-y: auto;
+  }
+  .form-check-label {
+    color: #fff;
+  }
+</style>
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+
+<div class="card p-4">
+  <h2 class="mb-4 text-center">Trainer Registration</h2>
+  <form action="{{ url_for('trainer_register') }}" method="post">
+    
+    <div class="mb-3">
+      <label for="name" class="form-label">Name</label>
+      <input type="text" class="form-control" name="username" id="name" placeholder="Enter full name" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input type="email" class="form-control" name="email" id="email" placeholder="Enter email" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="company" class="form-label">Company / Organization</label>
+      <input type="text" class="form-control" name="company" id="company" placeholder="Enter organization name" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="domain" class="form-label">Domain</label>
+      <select class="form-select" name="domain" id="domain" required>
+        <option value="">Select Domain</option>
+        <option value="ai/ml">AI/ML</option>
+        <option value="it">IT</option>
+        <option value="dataScience">Data Science</option>
+        <option value="iot">IoT</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input type="password" class="form-control" name="password" id="password" placeholder="Enter password" required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Terms & Conditions</label>
+      <div class="terms-box">
+        I confirm that all the information is true to the best of my knowledge. Giving false information could result in judicial consequences.
+      </div>
+    </div>
+
+    <div class="form-check mb-3">
+      <input class="form-check-input" type="checkbox" name="agree" id="agree" required>
+      <label class="form-check-label" for="agree">I Agree!</label>
+    </div>
+
+    <button type="submit" class="btn btn-success w-100">Register</button>
+  </form>
+</div>
+</div>
+{% endblock %}

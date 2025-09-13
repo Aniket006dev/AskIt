@@ -1,0 +1,22 @@
+{% extends "header.html"%}
+
+{% block content %}
+<main class="d-flex justify-content-center align-items-center" 
+      style="min-height: 100vh; 
+             background: url(https://images.unsplash.com/photo-1633436245198-44bc17f86b89) no-repeat center center/cover;">
+  <div class="card shadow-lg p-4" style="width: 90%; max-width: 800px; background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 15px; color: #ffffff;">
+    
+    <h2 class="mb-4 text-center">Answered Questions</h2>
+
+    {% for q,a,name in qa %}
+      <div class="mb-3 p-3 rounded" style="background: rgba(255, 255, 255, 0.1);">
+        <p style="font-size: larger;"><b style="text-decoration: underline; color: rgb(0, 0, 0);">Student asked:</b> {{q}}</p>
+        <p style="font-size: larger;"><b style="text-decoration: underline; color: rgb(0, 0, 0);">Answer:</b> {{a}}</p>
+      </div>
+    {% else %}
+      <p class="text-center">No questions have been answered yet.</p>
+    {% endfor %}
+    
+  </div>
+</main>
+{% endblock %}

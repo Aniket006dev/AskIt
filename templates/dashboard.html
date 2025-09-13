@@ -1,0 +1,77 @@
+{% extends "header.html" %}
+
+{% block content %}
+<style>
+  body {
+    background: url('{{ url_for("static", filename="images/bg2.jpg") }}') no-repeat center center/cover;
+    min-height: 100vh;
+  }
+  .dashboard-container {
+    padding: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .card {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+    color: #fff;
+    width: 100%;
+    max-width: 700px;
+  }
+  .card strong {
+    color: #ffd700; /* golden highlight */
+  }
+  .form-control {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: #fff;
+  }
+  .form-control::placeholder {
+    color: #eee;
+  }
+  .btn-success {
+    background: rgba(40, 167, 69, 0.8);
+    border: none;
+  }
+  .btn-success:hover {
+    background: rgba(40, 167, 69, 1);
+  }
+  .alert {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    border: none;
+    backdrop-filter: blur(10px);
+  }
+</style>
+
+<div class="container dashboard-container">
+  <h2 class="text-center mb-4" style="color: #fff;">Trainer Dashboard</h2>
+  
+  {% for id,q,a,name in qs %}
+  <div class="card mb-4">
+    <div class="card-body">
+      <p><strong>{{name}} asked:</strong> {{q}}</p>
+      
+      {% if a %}
+        <p><strong style="color: #4cff4c;">Answer:</strong> {{a}}</p>
+      {% else %}
+        <form method="post" action="/answer/{{id}}" class="d-flex">
+          <input type="text" name="answer" placeholder="Your answer" 
+                 class="form-control me-2" required>
+          <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+      {% endif %}
+    </div>
+  </div>
+  {% else %}
+    <div class="alert text-center">
+      No questions have been asked yet.
+    </div>
+  {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends "header.html" %}
+
+{% block content %}
+<style>
+  .card {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+    color: #fff;
+    width: 100%;
+    max-width: 400px;
+  }
+  .form-control {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: #fff;
+  }
+  .form-control::placeholder {
+    color: #eee;
+  }
+  .btn-success {
+    background: rgba(40, 167, 69, 0.8);
+    border: none;
+  }
+  .btn-success:hover {
+    background: rgba(40, 167, 69, 1);
+  }
+</style>
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+
+<div class="card p-4">
+  <h2 class="text-center mb-4">Trainer Login</h2>
+  <form action="{{ url_for('trainer_login') }}" method="post">
+    <div class="mb-3">
+      <label for="username" class="form-label">Username:</label>
+      <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username" required>
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" required>
+    </div>
+    <button type="submit" class="btn btn-success w-100">Login</button>
+  </form>
+  <a href="{{ url_for('trainer_register') }}" style="color: #fff;">Not Registered? Create account</a>
+</div>
+</div>
+{% endblock %}
